@@ -13,7 +13,6 @@ mongoose.connect(MONGO_URI, {
 });
 
 const salt = bcrypt.genSaltSync(10);
-// hash our password before inserting it to the database
 const hash = bcrypt.hashSync("password", salt);
 let userSeed = [
   {
