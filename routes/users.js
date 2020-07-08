@@ -12,7 +12,6 @@ router.get('/', function (req, res, next) {
 
 // POST register a user
 router.post('/', function (req, res, next) {
-
   const user = new User(req.body)
   user.save((err, user) => {
     if (err) {

@@ -41,7 +41,16 @@ const userSchema = new Schema({
 
 // Virtuals are document properties that you can get and set but that do not get persisted to MongoDB. 
 userSchema.virtual('fullName').get(function () {
-    return this.firstName + ' ' + this.lastName;
+    let fullName = '';
+    // check if the first name and the last name exist 
+    if (this.firstName && this.lastName) {
+        fullName = this.firstName + ', ' + this.lastName
+    }
+    // if first name or last name is empty we override fullname with ''
+    if (!this.firstName || !this.lastName) {
+        fullName = '';
+    }
+    return fullName;
 });
 
 // To use our schema definition, we need to convert our userSchema into a Model we can work with. To do so, we pass it into mongoose.model(modelName, schema):
