@@ -2,6 +2,12 @@
 // https://github.com/motdotla/dotenv
 require("dotenv").config();
 
+// CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
+// https://github.com/expressjs/cors
+const cors = require('cors');
+
+const flash = require('connect-flash');
+
 // Fast, unopinionated, minimalist web framework for node. 
 // https://github.com/expressjs/express
 const express = require('express');
@@ -40,6 +46,7 @@ mongoose.connect(MONGO_URI, { useNewUrlParser: true, useCreateIndex: true, useUn
     }
 });
 
+app.use(cors())
 
 // If we are in developemnt mode use dev mode output for morgan, which shows helpful information for developers otherwise show minimal output
 // Learn more here for other predefined formats https://github.com/expressjs/morgan#predefined-formats
@@ -54,6 +61,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
+
+// Passport setup
+const passport = require("./passport/local");
+app.use(require('express-session')({ secret: process.env.SESSION_SECRET || 'this-is-secret', resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
