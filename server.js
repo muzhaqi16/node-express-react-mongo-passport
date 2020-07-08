@@ -30,7 +30,7 @@ const PORT = process.env.PORT || 3001;
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/test';
 
 // We have a pending connection to the test database running on localhost. We now need to get notified if we connect successfully or if a connection error occurs:
-mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
+mongoose.connect(MONGO_URI, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }, (err) => {
     // Callback function to check if there was an error conenction to the database
     if (err) {
         console.log(err)
