@@ -5,8 +5,8 @@ import { Button, Input } from '../../components/Input';
 import api from '../../Api';
 
 function Login() {
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();

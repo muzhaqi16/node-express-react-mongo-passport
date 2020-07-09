@@ -1,6 +1,5 @@
 require("dotenv").config();
 const cors = require('cors');
-const flash = require('connect-flash');
 const express = require('express');
 const mongoose = require("mongoose");
 const cookieParser = require('cookie-parser');
@@ -36,7 +35,6 @@ app.use(cookieParser());
 app.use(require('express-session')({ secret: process.env.SESSION_SECRET || 'this-is-secret', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

@@ -5,10 +5,10 @@ import './style.css';
 import { Button, Input } from '../../components/Input';
 
 function Register() {
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
-    const [firstName, setfirstName] = useState();
-    const [lastName, setlastName] = useState();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [firstName, setfirstName] = useState('');
+    const [lastName, setlastName] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
