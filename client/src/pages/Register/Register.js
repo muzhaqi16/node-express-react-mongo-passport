@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import API from '../../Api';
+import API from '../../utils/API';
 import './style.css';
 import { Button, Input } from '../../components/Input';
 

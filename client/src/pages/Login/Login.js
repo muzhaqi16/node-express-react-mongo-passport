@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 import './style.css'
 import { Button, Input } from '../../components/Input';
-import API from '../../Api';
+import API from '../../utils/API';
 
 function Login() {
     const [email, setEmail] = useState('');
