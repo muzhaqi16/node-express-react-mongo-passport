@@ -1,7 +1,6 @@
 # MERN app boilerplate 
 > Node.js application with Express.js server, react.js client and mongodb as database and passport.js for authentication
 
----
 
 ## Table of Contents
 
@@ -11,7 +10,6 @@
 - [Team](#team)
 - [License](#license)
 
----
 ## Installation
 
 ### Clone
