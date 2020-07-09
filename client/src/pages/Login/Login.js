@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 import './style.css'
 import { Button, Input } from '../../components/Input';
-import api from '../../Api';
+import API from '../../Api';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -10,7 +10,7 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        api.Login(email, password)
+        API.Login(email, password)
     }
     return (
         <div className="login-page">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import api from '../../Api';
+import API from '../../Api';
 import './style.css';
 import { Button, Input } from '../../components/Input';
 
@@ -12,7 +12,7 @@ function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        api.Register(email, password, firstName, lastName)
+        API.Register(email, password, firstName, lastName)
     }
     return (
         <div className="register-page">
