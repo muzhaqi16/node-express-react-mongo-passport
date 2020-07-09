@@ -10,6 +10,7 @@ passport.use('local', new LocalStrategy(
     passReqToCallback: true
   },
   function (req, email, password, done) {
+    console.log(req.body)
     User.findOne({
       email: email
     }).then(function (user, err) {

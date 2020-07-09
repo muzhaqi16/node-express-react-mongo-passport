@@ -8,13 +8,7 @@ router.post('/register', passport.authenticate('signup', { failureFlash: true, s
   res.json("Registered succesfully")
 });
 
-router.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/users/register',
-  successFlash: true,
-  failureFlash: true,
-  failureMessage: "Unable to log in, check your email and password and try again"
-}), (req, res) => {
+router.post('/login', passport.authenticate('local'), (req, res) => {
   res.json(req.flash('error'))
 })
 
