@@ -12,7 +12,7 @@ function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        API.Register(email, password, firstName, lastName)
+        API.register(email, password, firstName, lastName)
     }
     return (
         <div className="register-page">

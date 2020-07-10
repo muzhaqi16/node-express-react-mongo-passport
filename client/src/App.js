@@ -4,13 +4,16 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import API from './utils/API';
 
 import './style.css'
 
 import { Login, Register } from './pages'
+import { Button } from './components/Input';
 function App() {
   return (
     <div className="main-container">
+      <Button onClick={() => API.logout()}>Log Out</Button>
       <Router>
         <Switch>
           <Route path="/login">

@@ -1,7 +1,33 @@
 const axios = require('axios');
 
-const Login = (email, password) => {
+const logout = () => {
+    axios('http://localhost:3001/users/logout')
+        .then((response) => {
+            console.log(response)
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+}
+const login = (email, password) => {
     axios.post('http://localhost:3001/users/login', {
+        email,
+        password
+    })
+        .then(function (response) {
+            console.log(response)
+            // handle success
+            // if (response.status === 200) {
+            //     window.location.href = '/'
+            // }
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+}
+const loginWithErrorMessage = (email, password) => {
+    axios.post('http://localhost:3001/users/loginWithErrorMessage', {
         email,
         password
     })
@@ -16,7 +42,7 @@ const Login = (email, password) => {
             console.log(error);
         })
 }
-const Register = (email, password, firstName, lastName) => {
+const register = (email, password, firstName, lastName) => {
     axios.post('http://localhost:3001/users/register', {
         email,
         password,
@@ -35,5 +61,5 @@ const Register = (email, password, firstName, lastName) => {
         })
 }
 export default {
-    Login, Register
+    login, register, loginWithErrorMessage, logout
 }

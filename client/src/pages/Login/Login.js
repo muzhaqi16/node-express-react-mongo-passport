@@ -10,7 +10,7 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        API.Login(email, password)
+        API.loginWithErrorMessage(email, password)
     }
     return (
         <div className="login-page">

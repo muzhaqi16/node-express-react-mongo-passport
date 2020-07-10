@@ -11,6 +11,12 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
   res.json({ messsage: "login was succesfull" })
 })
 
+// http://www.passportjs.org/docs/logout/
+router.get('/logout', function (req, res) {
+  req.logout();
+  res.sendStatus(200);
+});
+
 router.post('/loginWithErrorMessage', function (req, res, next) {
   passport.authenticate('local', function (err, user, info) {
     if (err) { return next(err); }
