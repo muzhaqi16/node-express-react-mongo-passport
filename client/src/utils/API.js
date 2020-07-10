@@ -1,7 +1,7 @@
 const axios = require('axios');
-
+const url = process.env.REACT_APP_API_URL;
 const logout = () => {
-    axios('http://localhost:3001/users/logout')
+    axios(`${url}/users/logout`)
         .then((response) => {
             console.log(response)
         })
@@ -10,29 +10,11 @@ const logout = () => {
         })
 }
 const login = (email, password) => {
-    axios.post('http://localhost:3001/users/login', {
+    axios.post(`${url}/users/login`, {
         email,
         password
     })
         .then(function (response) {
-            console.log(response)
-            // handle success
-            // if (response.status === 200) {
-            //     window.location.href = '/'
-            // }
-        })
-        .catch(function (error) {
-            // handle error
-            console.log(error);
-        })
-}
-const loginWithErrorMessage = (email, password) => {
-    axios.post('http://localhost:3001/users/loginWithErrorMessage', {
-        email,
-        password
-    })
-        .then(function (response) {
-            // handle success
             if (response.status === 200) {
                 window.location.href = '/'
             }
@@ -42,8 +24,24 @@ const loginWithErrorMessage = (email, password) => {
             console.log(error);
         })
 }
+const loginWithErrorMessage = (email, password) => {
+    axios.post(`${url}/users/loginWithErrorMessage`, {
+        email,
+        password
+    })
+        .then((response) => {
+            // handle success
+            if (response.status === 200) {
+                window.location.href = '/'
+            }
+        })
+        .catch(function (error) {
+            // handle error
+            console.log("This is the error", error);
+        })
+}
 const register = (email, password, firstName, lastName) => {
-    axios.post('http://localhost:3001/users/register', {
+    axios.post(`${url}/users/register`, {
         email,
         password,
         firstName,
@@ -52,7 +50,7 @@ const register = (email, password, firstName, lastName) => {
         .then(function (response) {
             // handle success
             if (response.status === 200) {
-                window.location.href = '/'
+                window.location.href = '/login'
             }
         })
         .catch(function (error) {
