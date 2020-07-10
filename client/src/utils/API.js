@@ -1,16 +1,18 @@
 const axios = require('axios');
-const url = process.env.REACT_APP_API_URL;
+
+const URL = process.env.REACT_APP_API_URL;
+
 const logout = () => {
-    axios(`${url}/users/logout`)
+    axios(`${URL}/users/logout`)
         .then((response) => {
-            console.log(response)
+            localStorage.removeItem('user')
         })
         .catch((error) => {
             console.log(error);
         })
 }
 const login = (email, password) => {
-    axios.post(`${url}/users/login`, {
+    axios.post(`${URL}/users/login`, {
         email,
         password
     })
@@ -25,13 +27,14 @@ const login = (email, password) => {
         })
 }
 const loginWithErrorMessage = (email, password) => {
-    axios.post(`${url}/users/loginWithErrorMessage`, {
+    axios.post(`${URL}/users/loginWithErrorMessage`, {
         email,
         password
     })
         .then((response) => {
             // handle success
             if (response.status === 200) {
+                localStorage.setItem('user', JSON.stringify(response.data))
                 window.location.href = '/'
             }
         })
@@ -41,7 +44,7 @@ const loginWithErrorMessage = (email, password) => {
         })
 }
 const register = (email, password, firstName, lastName) => {
-    axios.post(`${url}/users/register`, {
+    axios.post(`${URL}/users/register`, {
         email,
         password,
         firstName,
