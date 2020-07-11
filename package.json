@@ -1,14 +1,15 @@
 {
   "name": "node-react-mongo",
   "version": "1.0.0",
+  "type": "commonjs",
   "description": "Boilerplate MERN app to bootsrap your application with passport.js authentication",
   "main": "server.js",
   "author": "Artan Muzhaqi",
   "license": "MIT",
   "scripts": {
     "start": "env NODE_ENV=production node server.js",
-    "dev": "env NODE_ENV=development nodemon server.js",
-    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "server": "env NODE_ENV=development nodemon server.js",
+    "start:dev": "concurrently \"yarn run server\" \"yarn run client\"",
     "seed": "node ./seeders/seedUsers.js",
     "client": "cd client && npm run start"
   },
@@ -25,7 +26,10 @@
     "uuid": "^8.2.0"
   },
   "devDependencies": {
+    "concurrently": "^5.2.0",
     "dotenv": "^8.2.0",
+    "eslint": "^7.4.0",
+    "eslint-plugin-node": "^11.1.0",
     "nodemon": "^2.0.4"
   }
 }

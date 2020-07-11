@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import {
 	BrowserRouter as Router,
 	Switch,
-	Route, Link
+	Route
 } from 'react-router-dom';
 import API from './utils/API.js';
 
 import './App.css';
 
-import { Login, Register } from './pages.js';
-import { Button } from './components/Input.js';
+import { Home, Login, Register } from './pages';
+import { Button } from './components/Input';
 function App() {
 	const [user, setUser] = useState();
 	const getUser = async () => {
@@ -19,11 +19,11 @@ function App() {
 	useEffect(() => {
 		getUser();
 	}, []);
+
 	return (
 		<div className="main-container">
 			{user && <Button onClick={() => { API.logout(); setUser(); }}>Log Out {user.firstName}</Button>}
 			<Router>
-				{!user && <Link to="/login"><Button>Login</Button></Link>}
 				<Switch>
 					<Route path="/login">
 						<Login />
@@ -32,7 +32,7 @@ function App() {
 						<Register />
 					</Route>
 					<Route path="/">
-						{/* <Home /> */}
+						<Home user={user} />
 					</Route>
 				</Switch>
 			</Router>
