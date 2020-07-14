@@ -1,10 +1,11 @@
 require('dotenv').config();
+const path = require('path');
 const cors = require('cors');
 const express = require('express');
+const helmet = require('helmet');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
 const passport = require('./passport/local');
 
 const indexRouter = require('./routes/index');
@@ -15,6 +16,10 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/test';
+
+// Set Secure Headers with Helmet
+app.use(helmet());
+app.use(helmet.permittedCrossDomainPolicies());
 
 mongoose.connect(
 	MONGO_URI,
@@ -45,7 +50,16 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', indexRouter);
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static(path.join(__dirname, '/client/build')));
+	app.get('/*', function (req, res) {
+		res.sendFile(path.join(__dirname, './client/build', 'index.html'));
+	});
+}else{
+	app.use('/', indexRouter);
+}
+
 app.use('/users', usersRouter);
 
 app.listen(PORT, function () {
