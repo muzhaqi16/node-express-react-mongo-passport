@@ -9,12 +9,13 @@
   "scripts": {
     "start": "env NODE_ENV=production node server.js",
     "server": "env NODE_ENV=development nodemon server.js --ignore 'client/*'",
-    "dev": "concurrently \"nodemon server.js --ignore 'client/*'\" \"npm run client\"",
+    "dev": "concurrently \"nodemon server.js --ignore 'client/*'\" \"yarn run client\"",
     "seed": "node ./seeders/seedUsers.js",
-    "client": "cd client && npm run start",
-    "client:build": "cd client && npm run build",
-    "client:install": "cd client && npm install",
-    "heroku-postbuild": "npm run client:build"
+    "client": "cd client && yarn run start",
+    "client:build": "cd client && yarn run build",
+    "client:install": "cd client && yarn install",
+    "heroku-postbuild": "yarn run client:build",
+    "install": "yarn install && cd client && yarn install"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
